@@ -6,6 +6,8 @@ My homelab has been shelved for a few months. It is currently made of mostly dec
 
 The recent energy price bump made it uneconomical to run 1000W of compute 24/7. However, recently I moved to another location that only uses electric heaters. This meant that during winter it makes sense to run these computers simply as heaters and use the compute for my projects. 
 
+This repository serves as a learning journal. So things during experimentation are not necessarily hardened. I would have also destroyed any virtual infrastructure and swapped out all the keys, and reformed my network infrastructure. I hope this project serves as a small inspiration for someone.  
+
 ## The Goal
 
 I have recently encountered an interesting project that is hosted in OpenStack. I would like to set something like that up, where I can also requisition a Kubernetes cluster and use it to practice on.
@@ -315,9 +317,10 @@ This would suggest the installed serivices are:
 
 This would suggest, some basic networking, IAM and Compute Services are the only ones available and no Orchestration, Monitoring or Lifecycle tools. So Administring this cluster should be pretty simple and straightforward in its capability. 
 
-#### Launching Compute instances
+#### Launching Compute instances (TODO)
 
 We already launched a compute instance via the CLI. I will now try and play with the interface to see if I can create something a bit more complicated. 
 
 The objective here is to create a quick webserver. 
 
+...
