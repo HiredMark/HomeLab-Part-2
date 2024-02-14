@@ -263,3 +263,61 @@ This confirms that I now have a working environment. Given that I now have a way
 
 ### Learning to adminstrate
 
+#### Reviewing what happened
+
+I seem to be getting a bit less than expected. Given this is the barebones and proof of concept installation, I wanted to see the services that were deployed. 
+
+Sunbeam, uses Juju (which appears to be a terraform wrapper) and MicroK8s to orchestrate containers into which the deployments live.
+
+To see what services were deployed, I will see what pods are current running. 
+
+`microk8s.kubectl get pods --namespace=openstack` 
+
+The output is as follows: 
+
+```
+modeloperator-776c6f79f8-v464w   1/1     Running   0              21h
+certificate-authority-0          1/1     Running   0              21h
+nova-api-mysql-router-0          2/2     Running   0              21h
+placement-0                      2/2     Running   0              21h
+nova-mysql-router-0              2/2     Running   0              21h
+cinder-ceph-mysql-router-0       2/2     Running   0              21h
+nova-0                           4/4     Running   0              21h
+horizon-0                        2/2     Running   0              21h
+neutron-mysql-router-0           2/2     Running   0              21h
+cinder-0                         3/3     Running   0              21h
+horizon-mysql-router-0           2/2     Running   0              21h
+ovn-central-0                    4/4     Running   0              21h
+rabbitmq-0                       2/2     Running   0              21h
+ovn-relay-0                      2/2     Running   0              21h
+keystone-0                       2/2     Running   0              21h
+cinder-ceph-0                    2/2     Running   0              21h
+cinder-mysql-router-0            2/2     Running   0              21h
+glance-0                         2/2     Running   0              21h
+traefik-0                        2/2     Running   0              21h
+neutron-0                        2/2     Running   1 (110m ago)   21h
+mysql-0                          2/2     Running   2 (105m ago)   21h
+nova-cell-mysql-router-0         2/2     Running   2 (110m ago)   21h
+glance-mysql-router-0            2/2     Running   2 (110m ago)   21h
+placement-mysql-router-0         2/2     Running   2 (110m ago)   21h
+keystone-mysql-router-0          2/2     Running   1 (110m ago)   21h
+
+```
+
+This would suggest the installed serivices are:
+- Nova
+- Cinder
+- Neutron
+- Glance
+- Keystone
+- Horizon
+- Placement
+
+This would suggest, some basic networking, IAM and Compute Services are the only ones available and no Orchestration, Monitoring or Lifecycle tools. So Administring this cluster should be pretty simple and straightforward in its capability. 
+
+#### Launching Compute instances
+
+We already launched a compute instance via the CLI. I will now try and play with the interface to see if I can create something a bit more complicated. 
+
+The objective here is to create a quick webserver. 
+
